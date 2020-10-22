@@ -31,8 +31,12 @@ jobs:
       - name: Generate code coverage image
         run: php generate-code-coverage-image.php
 
-      - name: temp place item
-        uses: actions/upload-artifact@v2
+      - name: Commit Code Coverage Image to Repo
+        uses: EndBug/add-and-commit@v5
         with:
-          name: code-coverage
-          path: docs/code-coverage.png
+          author_name: Aaron Saray
+          author_email: me@aaronsaray.com
+          message: "Committing code coverage image"
+          add: "docs/code-coverage.png"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
