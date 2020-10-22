@@ -32,7 +32,7 @@ jobs:
         run: php generate-code-coverage-image.php
 
       - name: temp place item
-          uses: actions/upload-artifact@v2
-          with:
-            name: code-coverage
-            path: docs/code-coverage.png
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage
+          path: docs/code-coverage.png
