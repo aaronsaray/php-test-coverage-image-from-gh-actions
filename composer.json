@@ -1,0 +1,23 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Demo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": [
+            "phpunit --colors=always"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Run PHPUnit tests."
+    }
+}

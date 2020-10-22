@@ -1,0 +1,38 @@
+name: CI for Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+      - name: Install PHP Dependencies
+        run: "composer install --no-ansi --no-interaction --no-scripts --no-suggest --prefer-dist"
+
+      - name: Execute PHPUnit
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+      - name: Generate code coverage image
+        run: php generate-code-coverage-image.php
+
+      - name: temp place item
+          uses: actions/upload-artifact@v2
+          with:
+            name: code-coverage
+            path: docs/code-coverage.png
