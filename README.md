@@ -6,10 +6,9 @@ Demonstration of a PHPUnit code coverage report, in image form, published back t
 
 This repo has PHPUnit code coverage of:
 
-[[insert image]]
+![Code Coverage Image](docs/code-coverage.png)
 
 ## Notes
 
-The example code is pretty contrived.  In the `Decorator::yell()` method, we purposely alter the statement
-string when someone requests that we don't yell. However, we're not writing a unit test to cover that path.
-This should give us less than 100% code coverage for our image.
+The example code is pretty contrived. The combination of code in the repo is just made very simple
+so that a mix of covered and uncovered code by unit tests could be measured.
